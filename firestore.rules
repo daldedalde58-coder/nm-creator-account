@@ -1,0 +1,26 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    function signedIn() { return request.auth != null; }
+
+    function validAccount(uid, id) {
+      let d = request.resource.data;
+      return d.id == id
+        && d.userId == uid
+        && d.category in ['capcut_buddy_win', 'buddy_not_win', 'partner_account', 'apply_need']
+        && d.accountName is string && d.accountName.size() > 0 && d.accountName.size() <= 200
+        && d.deviceName is string && d.deviceName.size() > 0 && d.deviceName.size() <= 100
+        && (d.category == 'apply_need'
+              ? d.dollarAmount == null
+              : (d.dollarAmount is number && d.dollarAmount >= 0))
+        && d.createdAt is number && d.updatedAt is number
+        && d.keys().hasOnly(['id','userId','category','accountName','dollarAmount','deviceName','createdAt','updatedAt']);
+    }
+
+    match /users/{uid}/accounts/{id} {
+      allow read, delete: if signedIn() && request.auth.uid == uid;
+      allow create, update: if signedIn() && request.auth.uid == uid && validAccount(uid, id);
+    }
+  }
+}
