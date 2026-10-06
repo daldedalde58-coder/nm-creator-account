@@ -1,10 +1,11 @@
 // PASTE YOUR OWN FIREBASE WEB APP CONFIG HERE (Firebase Console > Project settings > Your apps > Web app > Config).
 // These values are not secrets; your Firestore rules protect the data.
-export const firebaseConfig = {
-  apiKey: "PASTE_YOUR_API_KEY",
-  authDomain: "PASTE_YOUR_PROJECT_ID.firebaseapp.com",
-  projectId: "PASTE_YOUR_PROJECT_ID",
-  storageBucket: "PASTE_YOUR_PROJECT_ID.appspot.com",
-  messagingSenderId: "PASTE_YOUR_SENDER_ID",
-  appId: "PASTE_YOUR_APP_ID"
+export const const firebaseConfig = {
+  apiKey: "AIzaSyDH4QWLXNTTm5y0Zg3bB9EBCgVIozVUFG8",
+  authDomain: "n-m-creator-account.firebaseapp.com",
+  projectId: "n-m-creator-account",
+  storageBucket: "n-m-creator-account.firebasestorage.app",
+  messagingSenderId: "378861160564",
+  appId: "1:378861160564:web:39ffa25d1d4e8a2ebb6921",
+  measurementId: "G-4D4XR7KBP6"
 };
